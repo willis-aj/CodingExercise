@@ -9,8 +9,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 
 var app = builder.Build();
-var myApi = app.MapGroup("/deposit");
-myApi.MapPost("/", (HttpRequest request) =>
+var myApi = app.MapGroup("/bank");
+myApi.MapPost("/deposit", (HttpRequest request) =>
 {
     var jsonDepositRequest = request.ReadFromJsonAsync<BalanceChangeRequest>();
     BalanceChangeRequest depositRequest = new BalanceChangeRequest(jsonDepositRequest.Result.CustomerId, jsonDepositRequest.Result.AccountId, jsonDepositRequest.Result.Amount);
@@ -18,8 +18,14 @@ myApi.MapPost("/", (HttpRequest request) =>
     return Results.Json(Bank.MakeDeposit(depositRequest), typeof(BalanceChangeResponse), SourceGenerationContext.Default);
 });
 
+myApi.MapPost("/withdrawl", (HttpRequest request) =>
+{
+    var jsonWithdrawlRequest = request.ReadFromJsonAsync<BalanceChangeRequest>();
+    BalanceChangeRequest withdrawlRequest = new BalanceChangeRequest(jsonWithdrawlRequest.Result.CustomerId, jsonWithdrawlRequest.Result.AccountId, jsonWithdrawlRequest.Result.Amount);
+
+    return Results.Json(Bank.MakeWithdrawl(withdrawlRequest), typeof(BalanceChangeResponse), SourceGenerationContext.Default);
+});
 app.Run();
-public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
 [JsonSerializable(typeof(BalanceChangeResponse))]
 [JsonSerializable(typeof(BalanceChangeRequest))]
