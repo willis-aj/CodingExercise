@@ -19,7 +19,7 @@ myApi.MapPost("/", (HttpRequest request) =>
     Bank.DepositRequest depositRequest = new Bank.DepositRequest(jsonDepositRequest.Result.CustomerId, jsonDepositRequest.Result.AccountId, jsonDepositRequest.Result.Amount);
     Bank bank = new Bank();
     Bank.DepositResponse response = bank.MakeDeposit(depositRequest);
-    return JsonSerializer.Serialize(response, typeof(Bank.DepositResponse), SourceGenerationContext.Default);
+    return Results.Json(response, typeof(Bank.DepositResponse), SourceGenerationContext.Default);
 });
 
 app.Run();
