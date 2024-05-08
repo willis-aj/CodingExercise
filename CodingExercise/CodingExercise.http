@@ -9,3 +9,8 @@ POST {{CodingExercise_HostAddress}}/bank/withdrawl
 Accept: application/json
 
 ###
+
+POST {{CodingExercise_HostAddress}}/bank/withdrawl
+Accept: application/json
+
+###
