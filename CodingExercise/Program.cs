@@ -47,7 +47,7 @@ internal partial class SourceGenerationContext : JsonSerializerContext
 public class Bank
 {
     //would have liked to make a factory to generate different kinds of accounts (checking, savings, etc.)
-    //this is pretend db
+    //this is pretend database
     static Account[] sampleAccounts =
         {
             new(1, 1, 100, true),
