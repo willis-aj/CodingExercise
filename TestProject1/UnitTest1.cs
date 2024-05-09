@@ -53,9 +53,10 @@ namespace TestProject
         {
             // Arrange
             BalanceChangeRequest request = new(1,1,50);
+            IBank bank = new Bank();
 
             //Act
-            BalanceChangeResponse response = Bank.MakeDeposit(request);
+            BalanceChangeResponse response = bank.MakeDeposit(request);
 
             //Assert
             response.Balance.ShouldBe(150);
@@ -69,9 +70,10 @@ namespace TestProject
         {
             // Arrange
             BalanceChangeRequest request = new(2, 2, 50);
+            IBank bank = new Bank();
 
             //Act
-            BalanceChangeResponse response = Bank.MakeWithdrawl(request);
+            BalanceChangeResponse response = bank.MakeWithdrawl(request);
 
             //Assert
             response.Balance.ShouldBe(150);
@@ -85,9 +87,10 @@ namespace TestProject
         {
             // Arrange
             CloseRequest request = new(7, 7);
+            IBank bank = new Bank();
 
             //Act
-            CloseResponse response = Bank.CloseAccount(request);
+            CloseResponse response = bank.CloseAccount(request);
 
             //Assert
             response.AccountId.ShouldBe(7);
